@@ -1,10 +1,20 @@
-import mongoose from 'mongoose';
+import mongoose, { connection } from "mongoose";
 // import User from '../models/user';
 
+const config = {
+  isConnected: 0,
+};
+
 export default async function connectDB() {
+  if (config.isConnected) {
+    return;
+  }
+
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('DB Connected');
+    console.log("DB Connected");
+    console.log(connection.readyState);
+    config.isConnected = connection.readyState;
 
     // For testing purposes, create a user after connecting to the database
     // const user = new User({
@@ -17,6 +27,6 @@ export default async function connectDB() {
     // await user.save();
     // console.log('User is created...');
   } catch (e) {
-    console.error('Failure to connect to the database:', e);
+    console.error("Failure to connect to the database:", e);
   }
 }
