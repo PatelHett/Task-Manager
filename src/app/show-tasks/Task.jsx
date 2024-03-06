@@ -1,12 +1,30 @@
 import UserContext from "@/context/userContext";
 import React, { useContext } from "react";
 import { MdDeleteOutline } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const Task = ({ task, deleteTaskParent }) => {
   const { user } = useContext(UserContext);
-  function deleteTask(taskId) {
+ async function deleteTask(taskId) {
     //......
-    deleteTaskParent(taskId);
+    const notiResult = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteTaskParent(taskId);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });  
   }
 
   return (

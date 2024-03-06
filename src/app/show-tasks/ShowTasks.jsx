@@ -30,7 +30,6 @@ async function deleteTaskParent(taskId){
     console.log(result);
     const newTask = task.filter(item=> item._id !== taskId)
     setTask(newTask);
-    toast.success("Task deleted successfully !!....");
   } catch (error) {
     console.log(error);
     toast.error("Failed to delete task !!....");

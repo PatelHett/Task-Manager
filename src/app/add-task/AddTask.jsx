@@ -2,6 +2,7 @@
 import { toast } from "react-toastify";
 import { addTask } from "@/services/taskService";
 import Image from "next/image";
+import Swal from "sweetalert2";
 import React, { useState } from "react";
 
 const AddTask = () => {
@@ -39,9 +40,23 @@ const AddTask = () => {
       }
 
       const result = await addTask(task);
-      console.log(result);
-      toast.success("Task Added Successfully", {
-        position: "top-center",
+      // console.log(result);
+      const notiResult = await Swal.fire({
+        title: "Task Added Successfully",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `,
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `,
+        },
       });
       setTask({
         title: "",
@@ -50,8 +65,10 @@ const AddTask = () => {
       });
     } catch (error) {
       console.log(error);
-      toast.error("Task Not Added", {
-        position: "top-center",
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
       });
     }
   };
