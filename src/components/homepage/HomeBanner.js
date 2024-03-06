@@ -2,9 +2,10 @@
 import React from "react";
 // import bannerImage from "../../assets/login.svg";
 import Image from "next/image";
+import Link from "next/link";
 const BannerSection = () => {
   return (
-    <div className="bg-blue-500 text-white p-4">
+    <div className=" text-white p-4">
       <div className="container mx-auto flex items-center justify-around py-5">
         <div className="mr-4">
           <Image
@@ -29,7 +30,7 @@ const BannerSection = () => {
               console.log("Action button clicked!");
             }}
           >
-            Learn More
+           <Link href="/signup"> Learn More </Link>
           </button>
         </div>
       </div>
