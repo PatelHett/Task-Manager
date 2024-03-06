@@ -15,7 +15,7 @@ const ActionSection = () => {
           Start managing your tasks efficiently with our task manager app.
         </p>
         <button
-          className="bg-white text-blue-500 py-3 px-6 rounded-md shadow-md hover:shadow-lg transition duration-300"
+          className="bg-white hover:bg-slate-200 text-blue-500 py-3 px-6 rounded-md shadow-md hover:shadow-lg transition duration-300"
         >
           <Link href="/login">Get Started</Link>
         </button>
